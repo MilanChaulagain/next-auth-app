@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
+import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 
 const Header = () => {
   return (
@@ -12,9 +13,16 @@ const Header = () => {
             </Link>
             {/* add a navigation menu */}
             <nav className='flex items-center space-x-4'>
+                <ul className='flex gap-4'>
                 <Link href='/' className='text-gray-800 hover:text-gray-900'>Home</Link>
                 <Link href='/about' className='text-gray-800 hover:text-gray-900'>About</Link>
-                <Link href='/contact' className='text-gray-800 hover:text-gray-900'>Contact</Link>
+                <SignedIn>
+                    <UserButton />    
+                </SignedIn>
+                <SignedOut>
+                    <SignInButton />
+                </SignedOut>     
+                </ul>
             </nav>
         </div>
     </header>
